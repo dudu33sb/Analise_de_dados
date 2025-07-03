@@ -1,3 +1,5 @@
+import random
+import os
 from collections import Counter, defaultdict
 from repo.csv_repo import ler_csv
 from models.pessoa import Pessoa
@@ -5,6 +7,8 @@ from repo.json_repo import salvar_json
 
 
 def main(caminho_csv: str, caminho_json: str, limite: int = None):
+    os.system('cls' if os.name == 'nt' else 'clear')  # Limpa terminal no Windows
+
     print(f"\n📥 Lendo dados do arquivo CSV: {caminho_csv}")
     dados_csv = ler_csv(caminho_csv)
 
@@ -13,6 +17,9 @@ def main(caminho_csv: str, caminho_json: str, limite: int = None):
         {k.lower(): v for k, v in linha.items()}
         for linha in dados_csv
     ]
+
+    # Embaralha a lista para escolher aleatoriamente
+    random.shuffle(dados_csv)
 
     if limite:
         dados_csv = dados_csv[:limite]
@@ -119,8 +126,8 @@ def main(caminho_csv: str, caminho_json: str, limite: int = None):
 
 
 if __name__ == "__main__":
-    caminho_csv = "C:\Users\SAMSUNG\Desktop\NExT\POO_com_Python\PROJETOS\09_analise_de_dados\lista_clientes.csv"
-    caminho_json = "C:\Users\SAMSUNG\Desktop\NExT\POO_com_Python\PROJETOS\09_analise_de_dados\saida.json"
-    limite = 3
+    caminho_csv = "C:/Users/SAMSUNG/Desktop/NExT/POO_com_Python/PROJETOS/09_analise_de_dados/lista_clientes.csv"
+    caminho_json = "C:/Users/SAMSUNG/Desktop/NExT/POO_com_Python/PROJETOS/09_analise_de_dados/saida.json"
+    limite = None
 
     main(caminho_csv, caminho_json, limite)
