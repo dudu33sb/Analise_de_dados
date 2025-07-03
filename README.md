@@ -1,47 +1,84 @@
-# Projeto de Normalização de Dados de Usuários
+# 📊 Análise de Dados de Pessoas com Python
 
-## Descrição
-
-Este projeto lê um arquivo CSV com dados de usuários, normaliza e valida informações como nome, CPF, celular e CEP, infere gênero pelo primeiro nome via API pública, e gera um arquivo JSON organizado com os dados tratados.
+Este projeto realiza a leitura, limpeza e análise de dados de pessoas a partir de um arquivo CSV. Os dados são processados em objetos Python, validados, exportados para JSON e um relatório estatístico é gerado no terminal.
 
 ---
 
-## Como usar
+## 🚀 Funcionalidades
+
+- Leitura de um arquivo CSV contendo dados de pessoas
+- Criação de objetos `Pessoa` com validações
+- Geração de arquivo JSON estruturado com os dados processados
+- Relatório estatístico com:
+  - Distribuição por gênero
+  - Distribuição por região do Brasil
+  - Qualidade dos dados (CPF/celular)
+  - Interesses mais comuns (geral e por gênero)
+
+---
+
+## 🗂️ Estrutura do Projeto
+
+09_analise_de_dados/
+├── src/
+│ ├── main.py
+│ ├── models/
+│ │ └── pessoa.py
+│ └── repo/
+│ ├── csv_repo.py
+│ └── json_repo.py
+├── lista_clientes.csv
+└── saida.json
+
+---
+
+## 📌 Como usar
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/seu-usuario/09_analise_de_dados.git
+cd 09_analise_de_dados
+2. Instale o Python (3.10 ou superior recomendado)
+3. Execute o projeto
+Edite os caminhos dos arquivos no final do main.py:
 
 
-### Pré-requisitos
+if __name__ == "__main__":
+    caminho_csv = "caminho/para/seu/lista_clientes.csv"
+    caminho_json = "caminho/para/salvar/saida.json"
+    limite = 3  # ou None para ler todo o CSV
+    main(caminho_csv, caminho_json, limite)
 
-- Python 3.7+
-- Instalar dependências (requests, pytest):
+Depois, execute:
+src/main.py
 
-bash
-pip install requests pytest
+📈 Exemplo de Saída
 
+✅ Arquivo JSON salvo com sucesso: saida.json
 
+📊 Relatório de Dados Processados:
+----------------------------------------
+👤 Male      : 1 pessoa(s) (33.3%)
+👤 Female    : 2 pessoa(s) (66.7%)
 
-API de Gênero
-Usamos a API gratuita genderize.io para inferir o gênero pelo primeiro nome.
+📍 Distribuição Geográfica por Região:
+  Sudeste    : 3 pessoa(s) (100.0%)
 
-Observações
-Celular é normalizado para o formato DD 9XXXXXXXX.
+🧪 Qualidade dos Dados:
+  CPFs inválidos     : 1 (33.3%)
+  Celulares inválidos: 1 (33.3%)
 
-CPF é validado e formatado (apenas números).
+🎯 Áreas de Interesse (geral):
+  tecnologia         : 2 pessoa(s) (66.7%)
+  marketing          : 1 pessoa(s) (33.3%)
+✅ Requisitos
+Python 3.10+
 
-CEP é usado para buscar bairro, cidade e estado via API ViaCEP.
+Biblioteca padrão do Python (collections, csv, json, etc.)
 
-Problemas encontrados são adicionados no campo observacoes do JSON.
+🧑‍💻 Autor
+Eduardo Coelho
 
-
-Estrutura do projeto
-src/models/: Modelos de dados (Pessoa, CPF, Endereco)
-
-src/services/: Serviços auxiliares (validação de CPF, consulta de gênero)
-
-src/repo/: Repositórios para ler CSV e salvar JSON
-
-src/main.py: Script principal
-
-tests/: Testes unitários
-
-Autor
-Eduardo Coelho - 2025
+📄 Licença
+Este projeto está licenciado sob a MIT License.
