@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "nome_completo": "André de Bifur Gomes Ribeiro",
+      "primeiro_nome": "André",
+      "segundo_nome": "de Bifur",
+      "genero": "male",
+      "email": "andrebifur@testmail.org",
+      "celular": "51 952127281",
+      "interesse": "Desenvolvimento de Jogos Digitais",
+      "cpf": "94097729828",
+      "bairro": "Petrópolis",
+      "cidade": "Porto Alegre",
+      "estado": "RS",
+      "observacoes": "CPF inválido"
+    },
+    {
+      "nome_completo": "Eduardo José Chagas Coelho",
+      "primeiro_nome": "Eduardo",
+      "segundo_nome": "José",
+      "genero": "male",
+      "email": "dudu012010@hotmail.com",
+      "celular": "81 999891564",
+      "interesse": "Design",
+      "cpf": "12212151403",
+      "bairro": "Imbiribeira",
+      "cidade": "Recife",
+      "estado": "PE",
+      "observacoes": ""
+    },
+    {
+      "nome_completo": "Lucas Lima e Você",
+      "primeiro_nome": "Lucas",
+      "segundo_nome": "Lima",
+      "genero": "male",
+      "email": "tcherreretchetche@fakemail.net",
+      "celular": "31 945539436",
+      "interesse": "Desenvolvimento de Jogos Digitais",
+      "cpf": "97778604558",
+      "bairro": "Santo Agostinho",
+      "cidade": "Belo Horizonte",
+      "estado": "MG",
+      "observacoes": ""
+    }
+  ]
+}
