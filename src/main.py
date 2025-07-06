@@ -1,32 +1,46 @@
-import random
 import os
+import random
 from collections import Counter, defaultdict
 from repo.csv_repo import ler_csv
 from models.pessoa import Pessoa
 from repo.json_repo import salvar_json
 
 
-def main(caminho_csv: str, caminho_json: str, limite: int = None):
+def main(caminho_csv: str, caminho_json: str, limite: int = None) -> None:
+    """
+    Função principal para processar dados de pessoas a partir de um arquivo CSV,
+    salvar os dados em JSON e gerar um relatório estatístico.
+
+    Args:
+        caminho_csv (str): Caminho do arquivo CSV de entrada.
+        caminho_json (str): Caminho do arquivo JSON de saída.
+        limite (Optional[int]): Número máximo de pessoas a processar. Se None, processa todas.
+            (Usando limite durante testes de implementação)
+    """
+    # Limpa o terminal
     os.system('cls' if os.name == 'nt' else 'clear')  # Limpa terminal no Windows
 
     print(f"\n📥 Lendo dados do arquivo CSV: {caminho_csv}")
     dados_csv = ler_csv(caminho_csv)
 
-    # Padronizar cabeçalhos para lowercase
+    # Padroniza os cabeçalhos para lowercase para evitar problemas de chave
     dados_csv = [
         {k.lower(): v for k, v in linha.items()}
         for linha in dados_csv
     ]
 
-    # Embaralha a lista para escolher aleatoriamente
-    random.shuffle(dados_csv)
+    # Embaralha a lista para processamento aleatório
+    #random.shuffle(dados_csv)
+    #comentado para o json ser impresso em ordem. random apenas durante o teste
 
     if limite:
         dados_csv = dados_csv[:limite]
 
     print(f"👤 Processando até {limite or 'todas as'} pessoas...")
     pessoas = []
+
     for i, linha in enumerate(dados_csv, start=1):
+        # Tenta obter o nome completo por possíveis chaves
         nome = (
             linha.get('nome_completo') or
             linha.get('nome') or
@@ -53,6 +67,12 @@ def main(caminho_csv: str, caminho_json: str, limite: int = None):
         print("\n💾 Salvando dados no arquivo JSON...")
 
     def gerar_relatorio(pessoas):
+        """
+        Gera e imprime um relatório estatístico sobre os dados processados.
+
+        Args:
+            pessoas (List[Pessoa]): Lista de objetos Pessoa processados.
+        """
         print("\n📊 Relatório de Dados Processados:\n" + "-" * 40)
 
         total = len(pessoas)
@@ -120,7 +140,7 @@ def main(caminho_csv: str, caminho_json: str, limite: int = None):
     salvar_json(pessoas, caminho_json)
     print(f"✅ Arquivo JSON salvo com sucesso: {caminho_json}")
 
-    # 🔎 Relatório estatístico
+    # Gera relatório estatístico
     gerar_relatorio(pessoas)
 
 
@@ -128,6 +148,6 @@ def main(caminho_csv: str, caminho_json: str, limite: int = None):
 if __name__ == "__main__":
     caminho_csv = "C:/Users/SAMSUNG/Desktop/NExT/POO_com_Python/PROJETOS/09_analise_de_dados/lista_clientes.csv"
     caminho_json = "C:/Users/SAMSUNG/Desktop/NExT/POO_com_Python/PROJETOS/09_analise_de_dados/saida.json"
-    limite = None
+    limite = None # Define um limite inteiro para testar com menos dados, ou None para todos
 
     main(caminho_csv, caminho_json, limite)
